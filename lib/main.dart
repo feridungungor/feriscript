@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
@@ -37,82 +36,82 @@ class _MyHomePageState extends State<MyHomePage> {
     SystemChrome.setEnabledSystemUIOverlays([]);
 
     return Scaffold(
+      backgroundColor: Colors.teal,
       resizeToAvoidBottomPadding: false,
-      body: Stack(fit: StackFit.expand, children: <Widget>[
-        ConstrainedBox(
-          constraints: const BoxConstraints.expand(),
-          child: Container(
+      body: Stack(
+        fit: StackFit.expand,
+        children: <Widget>[
+
+          Positioned(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
-            decoration: new BoxDecoration(
-              shape: BoxShape.rectangle,
-              color: Colors.blue,
-            ),
-          ),
-        ), //ConstrainedBox
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Container(
-              child: infoCard(context,"Hello Cınım"),
-            ),
-            SizedBox(height: 100,),
-            Container(
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 16.0),
-                child: frostedIconButton(
-                  IconButton(
-                      icon: Icon(
-                        Icons.share,
-                        color: Colors.white,
-                      ),
-                      onPressed: () {}),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Container(
+                  child: infoCard(context, "Hello Cınım"),
                 ),
-              ),
-            )
-          ],
-        ),
-
-      ]), //Stack,
-      bottomNavigationBar: CurvedNavigationBar(
-        color: Colors.red,
-        buttonBackgroundColor: Colors.red,
-        backgroundColor: Colors.transparent,
-        height: 60,
-        animationDuration: Duration(milliseconds: 300),
-        animationCurve: Curves.ease,
-        index: 2,
-        items: <Widget>[
-          Icon(
-            Icons.verified_user,
-            size: 20,
-            color: Colors.black,
-          ),
-          Icon(
-            Icons.favorite,
-            size: 20,
-            color: Colors.black,
-          ),
-          Icon(
-            Icons.fullscreen_exit,
-            size: 20,
-            color: Colors.black,
-          ),
-          Icon(
-            Icons.add,
-            size: 20,
-            color: Colors.black,
-          ),
-          Icon(
-            Icons.list,
-            size: 20,
-            color: Colors.black,
+                Container(
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 16.0),
+                    child: frostedIconButton(
+                      IconButton(
+                          icon: Icon(
+                            Icons.share,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {}),
+                    ),
+                  ),
+                )
+              ],
+            ),
           ),
         ],
-        onTap: (index) {
-          debugPrint("Current Index is $index");
-        },
-      ),
+      ), //Stack,
+      bottomNavigationBar: myCurvedNavigationBar(),
+    );
+  }
+
+  CurvedNavigationBar myCurvedNavigationBar() {
+    return CurvedNavigationBar(
+      color: Colors.teal,
+      buttonBackgroundColor: Colors.teal,
+      backgroundColor: Colors.white,
+      height: 60,
+      animationDuration: Duration(milliseconds: 300),
+      animationCurve: Curves.ease,
+      index: 2,
+      items: <Widget>[
+        Icon(
+          Icons.verified_user,
+          size: 20,
+          color: Colors.white,
+        ),
+        Icon(
+          Icons.favorite,
+          size: 20,
+          color: Colors.white,
+        ),
+        Icon(
+          Icons.fullscreen_exit,
+          size: 20,
+          color: Colors.white,
+        ),
+        Icon(
+          Icons.add,
+          size: 20,
+          color: Colors.white,
+        ),
+        Icon(
+          Icons.list,
+          size: 20,
+          color: Colors.white,
+        ),
+      ],
+      onTap: (index) {
+        debugPrint("Current Index is $index");
+      },
     );
   }
 }
@@ -129,8 +128,6 @@ Widget frostedIconButton(Widget child) {
                   color: Colors.white.withOpacity(0.3), shape: BoxShape.circle),
               child: child)));
 }
-
-
 Widget infoCard(BuildContext context, String title) {
   return ClipRRect(
     borderRadius: BorderRadius.circular(15),
